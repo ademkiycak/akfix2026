@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Bath & Kitchen",
+        "url": "",
+        "img": "/images/solution-categories/1.png"
+    },
+    {
+        "id": 2,
+        "title": "Wood Working",
+        "url": "",
+        "img": "/images/solution-categories/2.png"
+    },
+    {
+        "id": 3,
+        "title": "Door & Window",
+        "url": "",
+        "img": "/images/solution-categories/3.png"
+    },
+    {
+        "id": 4,
+        "title": "Flooring",
+        "url": "",
+        "img": "/images/solution-categories/4.png"
+    },
+    {
+        "id": 5,
+        "title": "Roof & Gutter",
+        "url": "",
+        "img": "/images/solution-categories/5.png"
+    },
+    {
+        "id": 6,
+        "title": "Pvc Tubes / Pipes",
+        "url": "",
+        "img": "/images/solution-categories/6.png"
+    },
+    {
+        "id": 7,
+        "title": "Decorative Products",
+        "url": "",
+        "img": "/images/solution-categories/7.png"
+    }
+]

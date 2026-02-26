@@ -1,0 +1,69 @@
+[
+    {
+        "id": 1,
+        "title": "FIRE RATED SERIES",
+        "url": "#",
+        "icon": "/images/categories/fire-rated-series-a.png",
+        "textColor": "#C4000B",
+        "bg": "/images/categories/bg/fire-rated-series-bg.jpg"
+    },
+    {
+        "id": 2,
+        "title": "ADHESIVES",
+        "url": "#",
+        "icon": "/images/categories/adhesives-a.png",
+        "textColor": "#F27C00",
+        "bg": "/images/categories/bg/adhesives-bg.jpg"
+    },
+    {
+        "id": 3,
+        "title": "SEALANTS",
+        "url": "#",
+        "icon": "/images/categories/sealants-a.png",
+        "textColor": "#0064B3",
+        "bg": "/images/categories/bg/sealants-bg.jpg"
+    },
+    {
+        "id": 4,
+        "title": "PU FOAMS",
+        "url": "#",
+        "icon": "/images/categories/foams-a.png",
+        "textColor": "#E13510",
+        "bg": "/images/categories/bg/foams-bg.jpg"
+    },
+    {
+        "id": 5,
+        "title": "AEROSOLS",
+        "url": "#",
+        "icon": "/images/categories/aerosols-a.png",
+        "textColor": "#541871",
+        "bg": "/images/categories/bg/aerosols-bg.jpg"
+    },
+    {
+        "id": 6,
+        "title": "COATINGS",
+        "url": "#",
+        "icon": "/images/categories/coatings-a.png",
+        "textColor": "#329626",
+        "bg": "/images/categories/bg/coatings-bg.jpg"
+    },
+    {
+        "id": 7,
+        "title": "ADHESIVES",
+        "url": "#",
+        "icon": "/images/categories/adhesives-a.png",
+        "textColor": "#F27C00",
+        "bg": "/images/categories/bg/adhesives-bg.jpg"
+    },
+    {
+        "id": 8,
+        "title": "SEALANTS",
+        "url": "#",
+        "icon": "/images/categories/sealants-a.png",
+        "textColor": "#0064B3",
+        "bg": "/images/categories/bg/sealants-bg.jpg"
+    }
+]
+
+
+ 
