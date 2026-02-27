@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
         hostname: 'akfix.akfix.com.tr',
       },
     ],
+    minimumCacheTTL: 60,
   },
 
 };
