@@ -43,7 +43,7 @@ function GaleryItem({cover = ""}){
     return (
       <PhotoView src={cover}>
         <div className="w-full h-auto flex flex-col gap-4 overflow-hidden cursor-pointer">
-            <Image src={cover} alt="videos" width={335} height={188} className="w-full h-[150] md:h-[250] max-h-[250] object-cover rounded-lg border hover:border-[#00AE9B]" />
+            <Image src={cover} alt="gallery" width={335} height={188} className="w-full h-[150] md:h-[250] max-h-[250] object-cover rounded-lg border hover:border-[#00AE9B]" />
         </div>
       </PhotoView>
     );
