@@ -146,7 +146,7 @@ function ProductItem({productCode="", title = "", url = "", img = "", color = "#
                  group-hover:border-[#C00020]`} style={{borderColor: `rgba(${borderColor ? borderColor : "192, 0, 32"}, 0.3)`, backgroundColor: `rgba(${productFrameColor ? productFrameColor : "192, 0, 32"}, 0.1)`}} >
   
               <div className="w-full h-[250] lg:h-[350] relative">
-                <Image src={img} fill className="object-contain" alt="product" />
+                <Image src={img} fill className="object-contain" alt="product" priority />
               </div>
               
           </div>
