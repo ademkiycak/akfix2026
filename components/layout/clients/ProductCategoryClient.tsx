@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface ProductCategories {
@@ -64,9 +65,9 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
               key={item.ID}
               title={item.title} 
               url={`products/${item.url}`}  
-              icon={`http://akfix.akfix.com.tr${item.img_url}`}  
+              icon={BaseUrl()+item.img_url}  
               textColor={item.color} 
-              bg={`http://akfix.akfix.com.tr${item.banner_img_url}`} 
+              bg={BaseUrl()+item.banner_img_url} 
             />
           </SwiperSlide>
         ))}
@@ -83,9 +84,9 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
               key={index}
               title={item.title} 
               url={item.url}  
-              icon={`http://akfix.akfix.com.tr${item.img_url}`}  
+              icon={BaseUrl()+item.img_url}  
               textColor={item.color} 
-              bg={`http://akfix.akfix.com.tr${item.banner_img_url}`} 
+              bg={BaseUrl()+item.banner_img_url} 
             />
         ))}
       </div>

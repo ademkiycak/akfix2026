@@ -1,3 +1,4 @@
+import { BaseUrl } from "@/lib/baseurl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,8 +23,8 @@ export default function ProductBrochure({product_brochures}: BrochureItem){
                     <BrochureItem 
                         key={index} 
                         title={item.brochure_title} 
-                        url={`http://akfix.akfix.com.tr${item.brochure_url}`} 
-                        cover={`http://akfix.akfix.com.tr${item.brochure_cover}`} 
+                        url={BaseUrl()+`${item.brochure_url}`} 
+                        cover={BaseUrl()+`${item.brochure_cover}`} 
                     />
                 ))
             }

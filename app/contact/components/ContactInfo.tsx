@@ -1,4 +1,5 @@
 import { fetchData } from "@/lib/api";
+import { BaseUrl } from "@/lib/baseurl";
 import { faFacebookF, faInstagram, faLinkedin, faPinterest, faVimeo, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -33,7 +34,7 @@ export default async function ContactInfo(){
 
     }
 
-    const data = await fetchData<Contact>("http://akfix.akfix.com.tr/public/api/data/contact/");
+    const data = await fetchData<Contact>(BaseUrl()+"/api/data/contact/");
 
 
     return(

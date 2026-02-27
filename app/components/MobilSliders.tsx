@@ -1,3 +1,4 @@
+import { BaseUrl } from "@/lib/baseurl";
 import MobileSliderClient from "./clients/MobilSliderClient";
 import { fetchData } from "@/lib/api";
 
@@ -15,7 +16,7 @@ export default async function MobilSliders(){
     language: string
   }
 
-    const data = await fetchData<MobilSlider[]>('http://akfix.akfix.com.tr/api/data/sliders/')
+    const data = await fetchData<MobilSlider[]>(BaseUrl()+'/api/data/sliders/')
 
     return(
        <MobileSliderClient data={data} />

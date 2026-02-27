@@ -1,4 +1,5 @@
 
+import { BaseUrl } from "@/lib/baseurl";
 import MenuClient from "./clients/MenuClient";
 import { fetchData } from "@/lib/api";
 
@@ -13,7 +14,7 @@ export default async function NavBar() {
         sub_menu: []
     }
 
-    const data = await fetchData<Menus[]>('http://akfix.akfix.com.tr/public/api/data/menus/');
+    const data = await fetchData<Menus[]>(BaseUrl()+'/api/data/menus/');
 
 
     return(

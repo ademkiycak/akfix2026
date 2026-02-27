@@ -1,3 +1,4 @@
+import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -21,7 +22,8 @@ export default function ProductVideos({product_videos}: VideoItem){
 
             {
                 product_videos.map((item:Videos, index) => (
-                    <VideoItem key={index} title={item.video_title} url={`https://www.youtube.com/watch?v=${item.video_url}`} cover={`http://akfix.akfix.com.tr${item.video_cover}`} coverHover="/images/videos/hover/1.webp" />
+                    <VideoItem key={index} title={item.video_title} url={`https://www.youtube.com/watch?v=${item.video_url}`} 
+                    cover={BaseUrl()+`${item.video_cover}`} coverHover="/images/videos/hover/1.webp" />
                 ))
             }
 

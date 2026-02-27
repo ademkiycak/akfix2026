@@ -1,3 +1,4 @@
+import { BaseUrl } from "@/lib/baseurl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ export default function CatalogueList({catalogue}: CatalogueItem){
             <>
                 {
                     catalogue.map((item: Catalogue, index) => (
-                        <CatalogueItem key={index} title={item.title} cover={`http://akfix.akfix.com.tr${item.cover_url}`} url={`http://akfix.akfix.com.tr${item.img_url}`} 
+                        <CatalogueItem key={index} title={item.title} cover={BaseUrl()+`${item.cover_url}`} url={BaseUrl()+`${item.img_url}`} 
                         />
                     ))
                 }

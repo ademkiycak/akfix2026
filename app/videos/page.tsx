@@ -6,12 +6,13 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { fetchData } from "@/lib/api";
 import VideoList from "./components/Videos";
+import { BaseUrl } from "@/lib/baseurl";
 
 export default async function Brochures(){
 
 
 
-const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/videos/`);
+const data = await fetchData<[]>(BaseUrl()+`/api/data/videos/`);
 
   return (
     <>

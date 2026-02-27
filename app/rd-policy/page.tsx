@@ -7,6 +7,7 @@ import Image from "next/image";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { fetchData } from "@/lib/api";
 import parse from "html-react-parser";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface RdPolicy{
@@ -19,7 +20,7 @@ interface RdPolicy{
 export default async function RdPolicy(){
 
 
-  const data = await fetchData<RdPolicy[]>("http://akfix.akfix.com.tr/public/api/data/company/rd_policy/");
+  const data = await fetchData<RdPolicy[]>(BaseUrl()+"/api/data/company/rd_policy/");
 
 
 
@@ -37,7 +38,7 @@ export default async function RdPolicy(){
       />
 
         <section className="w-full lg:container mx-auto my-5 flex justify-between gap-20 p-4 mt-10">
-            <Image src={`http://akfix.akfix.com.tr${data[0].img_url}`} width={544} height={696} alt="about" className="w-[50%] max-w-[544] h-auto self-start hidden lg:block rounded-lg" />
+            <Image src={BaseUrl()+`${data[0].img_url}`} width={544} height={696} alt="about" className="w-[50%] max-w-[544] h-auto self-start hidden lg:block rounded-lg" />
 
             <div className="w-full h-auto space-y-6 font-medium text-[16px] text-[#929292] leading-7">
               

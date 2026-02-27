@@ -1,5 +1,6 @@
 "use client"
 
+import { BaseUrl } from "@/lib/baseurl"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
@@ -57,7 +58,7 @@ const MenuClient = ({data} : {data:Menus[]}) =>{
                                     <li key={index}>
                                         <Link href={`/${sub_item.url}`} className="flex items-center gap-2 hover:text-gray-600 mx-5">
                                             <div className="w-[45] h-[45] rounded-full flex justify-center items-center p-3 bg-center bg-no-repeat bg-cover" style={{backgroundColor: `${sub_item.banner_img_url}`}}>
-                                                <Image className="w-full h-auto" src={`http://akfix.akfix.com.tr${sub_item.img_url}`} alt="Akfix" width={20} height={27} priority />
+                                                <Image className="w-full h-auto" src={BaseUrl()+sub_item.img_url} alt="Akfix" width={20} height={27} priority />
                                             </div>
                                             {sub_item.title}
                                         </Link>

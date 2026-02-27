@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface MobilSlider {
@@ -38,7 +39,7 @@ export default function MobileSliderClient({data}: {data : MobilSlider[]}){
               data.map((item, index) => (
               
                 <SwiperSlide key={index}>
-                  <Image src={`http://akfix.akfix.com.tr${item.img_url}`} alt="Banner" width={1920} height={600} className="w-full h-auto object-cover" />
+                  <Image src={BaseUrl()+`${item.img_url}`} alt="Banner" width={1920} height={600} className="w-full h-auto object-cover" />
                 </SwiperSlide>
               ))
            }

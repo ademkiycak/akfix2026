@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchData } from "@/lib/api";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 export default async function Products({ params }: { params: { list: string } }){
@@ -37,8 +38,8 @@ interface Category {
 }
 
 
-    const productLists = await fetchData<Product[]>(`http://akfix.akfix.com.tr/api/data/products/index.php?url=${list}`);
-    const productCategory = await fetchData<Category[]>(`http://akfix.akfix.com.tr/public/api/data/categories/one_categories/?url=${list}`);
+    const productLists = await fetchData<Product[]>(BaseUrl()+`/api/data/products/index.php?url=${list}`);
+    const productCategory = await fetchData<Category[]>(BaseUrl()+`/public/api/data/categories/one_categories/?url=${list}`);
 
 
   return (
@@ -67,7 +68,7 @@ interface Category {
                 productCode={"Akfix"} 
                 title={item.title} 
                 url={list+"/"+item.url} 
-                img={`http://akfix.akfix.com.tr${item.cover_img}`} 
+                img={`${BaseUrl()+item.cover_img}`} 
                 color={productCategory[0].color} 
                 productFrameColor={productCategory[0].color}
                 borderColor={productCategory[0].color} 

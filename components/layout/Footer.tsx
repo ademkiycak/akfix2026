@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import ContactInfo from "@/app/contact/components/ContactInfo";
 import { fetchData } from "@/lib/api";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface FooterMenuItem{
@@ -15,7 +16,7 @@ interface FooterMenuItem{
 
 export default async function Footer(){
 
-    const footerMenus = await fetchData<[]>("http://akfix.akfix.com.tr/public/api/data/menus/");
+    const footerMenus = await fetchData<[]>(BaseUrl()+"/api/data/menus/");
 
     return (
         <>

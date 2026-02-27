@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
  images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'akfix.akfix.com.tr',
+        protocol: 'https',
+        hostname: 'www.akfix.com',
       },
     ],
     minimumCacheTTL: 60,

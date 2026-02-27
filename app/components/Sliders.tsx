@@ -1,13 +1,11 @@
 
+import { BaseUrl } from "@/lib/baseurl";
 import SliderClient from "./clients/SliderClient";
 
 import { fetchData } from "@/lib/api";
 
 export default async function Sliders() {
-  /*
-  const res = await fetch('http://akfix.akfix.com.tr/api/data/sliders/');
-  const data = await res.json();
-  */
+
 
   interface Slider {
     ID: string
@@ -22,7 +20,7 @@ export default async function Sliders() {
   }
 
 
-const data = await fetchData<Slider[]>('http://akfix.akfix.com.tr/api/data/sliders/');
+const data = await fetchData<Slider[]>(BaseUrl()+'/api/data/sliders/');
 
   return <SliderClient data={data} />
 }

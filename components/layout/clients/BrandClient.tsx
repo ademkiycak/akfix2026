@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface Brands{
@@ -46,7 +47,7 @@ const BrandList = ({brands}: Brands) => {
             {
                 brands.map((item: BrandItem, index) => (
                     <SwiperSlide key={index} className="flex items-center justify-center">
-                        <BrandItem url={item.url} img={`http://akfix.akfix.com.tr${item.img_url}`} />
+                        <BrandItem url={item.url} img={BaseUrl()+item.img_url} />
                     </SwiperSlide>
                 ))
             }

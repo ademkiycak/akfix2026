@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface Slider {
@@ -33,7 +34,7 @@ export default function SliderClient({ data }: { data: Slider[] }) {
         {data.map((item, index) => (
           <SwiperSlide key={index}>
             <Image 
-                src={`http://akfix.akfix.com.tr${item.img_url}`}
+                src={`${BaseUrl()+item.img_url}`}
                 alt={item.title || "Banner"} 
                 width={1920} 
                 height={600} 

@@ -1,3 +1,4 @@
+import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -30,7 +31,8 @@ export default function VideoClient({ data }: { data: VideoItem[] }){
             <div className="container mx-auto m-10 flex flex-wrap justify-center gap-5 gap-y-6">
                 {
                     data.slice(0, 12).map((item, index) => (
-                        <VideoItem key={index} title={item.title} url={`https://www.youtube.com/watch?v=${item.video_url}`} cover={`http://akfix.akfix.com.tr${item.img_url}`} coverHover="/images/videos/hover/1.webp" />
+                        <VideoItem key={index} title={item.title} url={`https://www.youtube.com/watch?v=${item.video_url}`} 
+                        cover={BaseUrl()+`${item.img_url}`} coverHover="/images/videos/hover/1.webp" />
                     ))
                 }
        

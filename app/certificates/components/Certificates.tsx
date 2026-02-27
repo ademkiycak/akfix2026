@@ -1,4 +1,5 @@
 "use client"
+import { BaseUrl } from "@/lib/baseurl";
 import Image from "next/image";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
@@ -29,8 +30,8 @@ export default function CertificateList({certificate}: CertificateItem){
                             <CertificateItem 
                                 key={index} 
                                 title={item.title} 
-                                cover={`http://akfix.akfix.com.tr${item.cover_url}`}
-                                img_url={`http://akfix.akfix.com.tr${item.img_url}`}
+                                cover={BaseUrl()+`${item.cover_url}`}
+                                img_url={BaseUrl()+`${item.img_url}`}
                             />
                         ))
                     }

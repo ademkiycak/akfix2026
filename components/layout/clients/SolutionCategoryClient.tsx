@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 interface SolutionCategories {
@@ -65,7 +66,7 @@ const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
               key={item.ID}
               title={item.title} 
               url={`products/${item.url}`}  
-              img={`http://akfix.akfix.com.tr${item.img_url}`}  
+              img={BaseUrl()+item.img_url}  
             />
           </SwiperSlide>
         ))}
@@ -82,7 +83,7 @@ const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
               key={index}
               title={item.title} 
               url={item.url}  
-              img={`http://akfix.akfix.com.tr${item.img_url}`}  
+              img={BaseUrl()+item.img_url}  
             />
         ))}
       </div>

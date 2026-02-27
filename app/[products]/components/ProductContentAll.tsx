@@ -1,4 +1,5 @@
 "use client"
+import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -44,10 +45,10 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                 {
                     /* Product images */
                     product_images.map((item:string, index) => (
-                        <PhotoView key={index} src={`http://akfix.akfix.com.tr${item.replace('small/', '')}`}>
+                        <PhotoView key={index} src={BaseUrl()+`${item.replace('small/', '')}`}>
                             <div className="w-full h-[110]  rounded-xl relative border border-white hover:border hover:border-[#00AE9B] cursor-pointer hover:opacity-70"
                             style={{borderColor: `rgba(${color ? color : "192, 0, 32"}, 0.3)`, backgroundColor: `rgba(${color ? color : "192, 0, 32"}, 0.1)`}}>
-                            <Image src={`http://akfix.akfix.com.tr${item}`} fill className="w-auto  h-fit object-contain p-2" alt="Product" loading="lazy" />
+                            <Image src={BaseUrl()+`${item}`} fill className="w-auto  h-fit object-contain p-2" alt="Product" loading="lazy" />
                             </div>
                         </PhotoView>
                     ))
@@ -60,9 +61,9 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                 {
                     /* Product gallery */
                     product_galleries.map((item:string, index) => (
-                        <PhotoView key={index} src={`http://akfix.akfix.com.tr${item}`}>
+                        <PhotoView key={index} src={BaseUrl()+`{item}`}>
                             <div className="w-full h-[110] bg-amber-50 rounded-xl relative overflow-hidden border border-white hover:border hover:border-[#00AE9B]">
-                                <Image src={`http://akfix.akfix.com.tr${item}`} fill className="w-auto h-fit object-cover" alt="Product" loading="lazy" />
+                                <Image src={BaseUrl()+`${item}`} fill className="w-auto h-fit object-cover" alt="Product" loading="lazy" />
                             </div>
                         </PhotoView>
                     ))
@@ -79,7 +80,7 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                             <div className="w-auto h-auto p-0.5 rounded-lg bg-akfix-green absolute z-50 top-2 right-2 flex justify-center items-center">
                             <FontAwesomeIcon icon={faYoutube} fontSize={22} className="text-white" />
                             </div>
-                            <Image src={`http://akfix.akfix.com.tr${item.video_cover}`} fill className="w-auto h-fit object-left object-cover" alt="Product" loading="lazy" />
+                            <Image src={BaseUrl()+`${item.video_cover}`} fill className="w-auto h-fit object-left object-cover" alt="Product" loading="lazy" />
                         </div>
                         </Link>
                     ))
@@ -90,9 +91,9 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                 {
                     /* Product brochures */
                     product_brochures.map((item: BrochureItem, index) => (
-                        <Link key={index} href={`http://akfix.akfix.com.tr${item.brochure_url}`} target="_blank">
+                        <Link key={index} href={BaseUrl()+`${item.brochure_url}`} target="_blank">
                             <div className="w-full h-[110] bg-amber-50 rounded-xl relative overflow-hidden border border-white hover:border hover:border-[#00AE9B]">
-                                <Image src={`http://akfix.akfix.com.tr${item.brochure_cover}`} fill className="w-auto  h-fit object-cover" alt="Product" loading="lazy" />
+                                <Image src={BaseUrl()+`${item.brochure_cover}`} fill className="w-auto  h-fit object-cover" alt="Product" loading="lazy" />
                             </div>
                         </Link>
                     ))

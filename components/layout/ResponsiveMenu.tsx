@@ -1,6 +1,7 @@
 
 import { fetchData } from "@/lib/api";
 import ResponsiveMenuClient from "./clients/ResponsiveMenuClient";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 export default async function ResponsiveMenu() {
@@ -15,7 +16,7 @@ export default async function ResponsiveMenu() {
         sub_menu: []
     }
 
-    const data = await fetchData<Menus[]>('http://akfix.akfix.com.tr/public/api/data/menus/');
+    const data = await fetchData<Menus[]>(BaseUrl()+'/api/data/menus/');
 
   return (
     <ResponsiveMenuClient data={data} />

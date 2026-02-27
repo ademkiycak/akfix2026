@@ -7,10 +7,11 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 
 import GalleryList from "./components/Gallery";
 import { fetchData } from "@/lib/api";
+import { BaseUrl } from "@/lib/baseurl";
 
 export default async function Gallery(){
 
-const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/galleries/`);
+const data = await fetchData<[]>(BaseUrl()+`/api/data/galleries/`);
 
 
   return (

@@ -1,4 +1,5 @@
 "use client"
+import { BaseUrl } from "@/lib/baseurl";
 import Image from "next/image";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
@@ -27,7 +28,7 @@ export default function GalleryList({gallery}: GalleryItem){
                     
            {
                 gallery.map((item: Gallery, index) => (
-                    <GaleryItem key={index} cover={`http://akfix.akfix.com.tr${item.img_url}`} />
+                    <GaleryItem key={index} cover={BaseUrl()+`${item.img_url}`} />
                 ))
            }
                 

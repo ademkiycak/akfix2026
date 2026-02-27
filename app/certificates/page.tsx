@@ -7,10 +7,11 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 
 import { fetchData } from "@/lib/api";
 import CertificateList from "./components/Certificates";
+import { BaseUrl } from "@/lib/baseurl";
 
 export default async function Certificates(){
 
-const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/certificates/`);
+const data = await fetchData<[]>(BaseUrl()+`/api/data/certificates/`);
 
 
   return (

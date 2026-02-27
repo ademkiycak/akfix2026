@@ -14,6 +14,7 @@ import ProductGallery from "../../components/ProductGallery";
 import parse from "html-react-parser";
 import ProductVideos from "../../components/ProductVideo";
 import ProductBrochure from "../../components/ProductBrochure";
+import { BaseUrl } from "@/lib/baseurl";
 
 
 
@@ -56,8 +57,8 @@ export default async function Products({ params }: { params: { list: string, det
 
     const { list, detail } = await params
 
-    const productCategory = await fetchData<Category[]>(`http://akfix.akfix.com.tr/public/api/data/categories/one_categories/?url=${list}`);
-    const productDetail = await fetchData<Product[]>(`http://akfix.akfix.com.tr/api/data/products/detail/?url=${detail}`);
+    const productCategory = await fetchData<Category[]>(BaseUrl()+`/api/data/categories/one_categories/?url=${list}`);
+    const productDetail = await fetchData<Product[]>(BaseUrl()+`/api/data/products/detail/?url=${detail}`);
 
 
   return (
@@ -80,7 +81,7 @@ export default async function Products({ params }: { params: { list: string, det
         <div className="w-full lg:container mx-auto py-15 px-5 flex flex-col lg:flex-row gap-5">
 
             <ProductContentAll 
-                cover_img={`http://akfix.akfix.com.tr${productDetail[0].cover_img.replace("/small", "")}`}
+                cover_img={BaseUrl()+`${productDetail[0].cover_img.replace("/small", "")}`}
                 product_images={productDetail[0].images}
                 product_galleries={productDetail[0].galleries}
                 product_videos={productDetail[0].videos}
