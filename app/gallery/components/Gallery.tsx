@@ -1,19 +1,9 @@
 "use client"
 import Image from "next/image";
-//import { PhotoProvider, PhotoView } from "react-photo-view";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 import "react-photo-view/dist/react-photo-view.css";
-import dynamic from "next/dynamic";
 
-const PhotoProvider = dynamic(
-  () => import("react-photo-view").then(mod => mod.PhotoProvider),
-  { ssr: false }
-);
-
-const PhotoView = dynamic(
-  () => import("react-photo-view").then(mod => mod.PhotoView),
-  { ssr: false }
-);
 
 
 interface GalleryItem{
