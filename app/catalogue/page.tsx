@@ -11,7 +11,7 @@ export default async function Catalogue(){
 
 
 
-const data = await fetchData<[]>(`https://www.akfix.com/public/api/data/catalogues/`);
+const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/catalogues/`);
 
   return (
     <>

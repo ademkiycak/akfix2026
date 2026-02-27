@@ -64,9 +64,9 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
               key={item.ID}
               title={item.title} 
               url={`products/${item.url}`}  
-              icon={`https://www.akfix.com${item.img_url}`}  
-              textColor={"#f00"} 
-              bg={"#222"} 
+              icon={`http://akfix.akfix.com.tr${item.img_url}`}  
+              textColor={item.color} 
+              bg={`http://akfix.akfix.com.tr${item.banner_img_url}`} 
             />
           </SwiperSlide>
         ))}
@@ -83,9 +83,9 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
               key={index}
               title={item.title} 
               url={item.url}  
-              icon={`https://www.akfix.com${item.img_url}`}  
-              textColor={"#f00"} 
-              bg={"#222"} 
+              icon={`http://akfix.akfix.com.tr${item.img_url}`}  
+              textColor={item.color} 
+              bg={`http://akfix.akfix.com.tr${item.banner_img_url}`} 
             />
         ))}
       </div>
@@ -104,9 +104,9 @@ function ProductCategoryItem({title = "", url = "", icon = "", textColor = "#707
         <Link href={url} className="w-[192] h-auto flex flex-col items-center gap-5 group">
             <div className="w-[192] h-[192] bg-center bg-no-repeat bg-cover rounded-full relative flex justify-center items-center" 
                 style={{ backgroundImage: `url(${bg})` }}>
-            <Image className="w-[86] h-auto animate-[slideDown_0.2s_ease-out_forwards] group-hover:animate-[slideDown2_0.2s_ease-out_forwards]" src={icon} alt="Akfix" width={86} height={120} priority />
+                <Image className="w-[86] h-auto animate-[slideDown_0.2s_ease-out_forwards] group-hover:animate-[slideDown2_0.2s_ease-out_forwards]" src={icon} alt="Akfix" width={86} height={120} priority />
             </div>
-            <strong className="text-2xl font-extrabold text-center leading-7 group-hover-text-akfix-gray" style={{color: `${textColor}`}}>{title}</strong>
+            <strong className="text-2xl font-extrabold text-center leading-7 group-hover-text-akfix-gray" style={{color: `rgb(${textColor})`}}>{title}</strong>
         </Link>
     </>
 }
@@ -122,7 +122,7 @@ function ProductMobileCategoryItem({title = "", url = "", icon = "", textColor =
                 style={{ backgroundImage: `url(${bg})` }}>
             <Image className="w-[60] h-auto animate-[slideDown_0.2s_ease-out_forwards] group-hover:animate-[slideDown2_0.2s_ease-out_forwards]" src={icon} alt="Akfix" width={86} height={120} priority />
             </div>
-            <strong className="text-xl font-extrabold text-center leading-6 group-hover-text-akfix-gray" style={{color: `${textColor}`}}>{title}</strong>
+            <strong className="text-xl font-extrabold text-center leading-6 group-hover-text-akfix-gray" style={{color: `rgb(${textColor})`}}>{title}</strong>
         </Link>
     </>
 }

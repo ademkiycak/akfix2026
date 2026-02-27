@@ -46,7 +46,7 @@ const BrandList = ({brands}: Brands) => {
             {
                 brands.map((item: BrandItem, index) => (
                     <SwiperSlide key={index} className="flex items-center justify-center">
-                        <BrandItem url={item.url} img={`https://www.akfix.com${item.img_url}`} />
+                        <BrandItem url={item.url} img={`http://akfix.akfix.com.tr${item.img_url}`} />
                     </SwiperSlide>
                 ))
             }

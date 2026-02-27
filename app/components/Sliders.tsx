@@ -5,7 +5,7 @@ import { fetchData } from "@/lib/api";
 
 export default async function Sliders() {
   /*
-  const res = await fetch('https://www.akfix.com/api/data/sliders/');
+  const res = await fetch('http://akfix.akfix.com.tr/api/data/sliders/');
   const data = await res.json();
   */
 
@@ -22,7 +22,7 @@ export default async function Sliders() {
   }
 
 
-const data = await fetchData<Slider[]>('https://www.akfix.com/api/data/sliders/');
+const data = await fetchData<Slider[]>('http://akfix.akfix.com.tr/api/data/sliders/');
 
   return <SliderClient data={data} />
 }

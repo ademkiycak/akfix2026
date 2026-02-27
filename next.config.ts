@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
  images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.akfix.com',
+        protocol: 'http',
+        hostname: 'akfix.akfix.com.tr',
       },
     ],
   },

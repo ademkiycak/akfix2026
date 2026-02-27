@@ -29,8 +29,8 @@ export default function CertificateList({certificate}: CertificateItem){
                             <CertificateItem 
                                 key={index} 
                                 title={item.title} 
-                                cover={`https://www.akfix.com${item.cover_url}`}
-                                img_url={`https://www.akfix.com${item.img_url}`}
+                                cover={`http://akfix.akfix.com.tr${item.cover_url}`}
+                                img_url={`http://akfix.akfix.com.tr${item.img_url}`}
                             />
                         ))
                     }

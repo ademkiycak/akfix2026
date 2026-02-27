@@ -19,7 +19,7 @@ export default function CatalogueList({catalogue}: CatalogueItem){
             <>
                 {
                     catalogue.map((item: Catalogue, index) => (
-                        <CatalogueItem key={index} title={item.title} cover={`https://www.akfix.com${item.cover_url}`} url={`https://www.akfix.com${item.img_url}`} 
+                        <CatalogueItem key={index} title={item.title} cover={`http://akfix.akfix.com.tr${item.cover_url}`} url={`http://akfix.akfix.com.tr${item.img_url}`} 
                         />
                     ))
                 }

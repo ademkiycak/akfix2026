@@ -19,7 +19,7 @@ interface QualityPolicy{
 export default async function QualityPolicy(){
 
 
-  const data = await fetchData<QualityPolicy[]>("https://www.akfix.com/public/api/data/company/quality_policy/");
+  const data = await fetchData<QualityPolicy[]>("http://akfix.akfix.com.tr/public/api/data/company/quality_policy/");
 
 
 
@@ -38,7 +38,7 @@ export default async function QualityPolicy(){
 
         <section className="w-full lg:container mx-auto my-5 flex justify-between gap-20 p-4 mt-10">
           
-            <Image src={`https://www.akfix.com${data[0].img_url}`} width={544} height={696} alt="about" className="w-[50%] max-w-[544] h-auto self-start hidden lg:block rounded-lg" />
+            <Image src={`http://akfix.akfix.com.tr${data[0].img_url}`} width={544} height={696} alt="about" className="w-[50%] max-w-[544] h-auto self-start hidden lg:block rounded-lg" />
 
             <div className="w-full h-auto space-y-6 font-medium text-[16px] text-[#929292] leading-7">
               

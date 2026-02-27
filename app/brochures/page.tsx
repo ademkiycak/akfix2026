@@ -11,7 +11,7 @@ export default async function Brochures(){
 
 
 
-const data = await fetchData<[]>(`https://www.akfix.com/public/api/data/brochures/`);
+const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/brochures/`);
 
   return (
     <>

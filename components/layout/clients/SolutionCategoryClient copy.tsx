@@ -35,12 +35,12 @@ interface SolutionCategories {
 
 const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
     return <div className="bg-[#F1F1F1] pt-1">
-      <div className="w-auto h-auto mx-auto text-center mt-20 mb-5 md:mb-15 space-x-2 text-3xl">
+      <div className="w-auto h-auto mx-auto text-center mt-20 mb-15 space-x-2 text-3xl">
         <strong className="font-extrabold text-akfix-gray text-2xl md:text-3xl">SOLUTIONS</strong>
         <span className="text-akfix-gray font-light text-2xl md:text-3xl">CATEGORIES</span>
       </div>
 
-    <div className="lg:flex">
+    <div className="hidden lg:flex">
       <Swiper
         className="product-categories-carousel container mx-auto mb-20 flex gap-5 justify-center items-center flex-wrap"
         modules={[Navigation, Pagination, Autoplay]}
@@ -50,8 +50,7 @@ const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
         pagination={false}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         breakpoints={{
-          380: { slidesPerView: 3 },
-          640: { slidesPerView: 3 },
+          640: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
           1280: { slidesPerView: 5 },
@@ -76,7 +75,7 @@ const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
 
 
 
-      <div className="container mx-auto hidden gap-3 justify-center flex-wrap">
+      <div className="container mx-auto flex lg:hidden gap-8 justify-center flex-wrap pb-20">
         {data.map((item, index) => (
             <SolutionMobileCategoryItem 
               key={index}
@@ -99,9 +98,9 @@ const SolutionCategoryClient = ({data} : {data:SolutionCategories[]}) => {
 
 function SolutionCategoryItem({title = "", url = "", img = ""}){
     return (
-        <Link href={url} className="w-auto flex flex-col items-center text-center gap-4 p-3 border border-transparent hover:border-[#00AE9B] hover:rounded-lg hover:bg-white group mb-10">
-            <Image src={img} alt="solution" width={100} height={150} className="w-fit h-[150] max-h-[85] object-contain mix-blend-darken" />
-            <strong className="text-sm md:text-lg font-medium text-akfix-gray">{title}</strong>
+        <Link href={url} className="flex flex-col items-center gap-4 p-3 border border-transparent hover:border-[#00AE9B] hover:rounded-lg hover:bg-white group">
+            <Image src={img} alt="solution" width={100} height={150} className="w-[150] h-[150] max-h-[85] object-contain mix-blend-darken" />
+            <strong className="text-lg font-medium text-akfix-gray">{title}</strong>
         </Link>
     );
 }

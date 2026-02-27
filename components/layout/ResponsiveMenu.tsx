@@ -15,7 +15,7 @@ export default async function ResponsiveMenu() {
         sub_menu: []
     }
 
-    const data = await fetchData<Menus[]>('https://www.akfix.com/public/api/data/menus/');
+    const data = await fetchData<Menus[]>('http://akfix.akfix.com.tr/public/api/data/menus/');
 
   return (
     <ResponsiveMenuClient data={data} />

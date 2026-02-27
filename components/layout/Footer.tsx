@@ -15,7 +15,7 @@ interface FooterMenuItem{
 
 export default async function Footer(){
 
-    const footerMenus = await fetchData<[]>("https://www.akfix.com/public/api/data/menus/");
+    const footerMenus = await fetchData<[]>("http://akfix.akfix.com.tr/public/api/data/menus/");
 
     return (
         <>

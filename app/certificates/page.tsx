@@ -10,7 +10,7 @@ import CertificateList from "./components/Certificates";
 
 export default async function Certificates(){
 
-const data = await fetchData<[]>(`https://www.akfix.com/public/api/data/certificates/`);
+const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/certificates/`);
 
 
   return (

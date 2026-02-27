@@ -33,7 +33,7 @@ export default async function ContactInfo(){
 
     }
 
-    const data = await fetchData<Contact>("https://www.akfix.com/public/api/data/contact/");
+    const data = await fetchData<Contact>("http://akfix.akfix.com.tr/public/api/data/contact/");
 
 
     return(

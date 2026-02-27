@@ -37,8 +37,8 @@ interface Category {
 }
 
 
-    const productLists = await fetchData<Product[]>(`https://www.akfix.com/api/data/products/index.php?url=${list}`);
-    const productCategory = await fetchData<Category[]>(`https://www.akfix.com/public/api/data/categories/one_categories/?url=${list}`);
+    const productLists = await fetchData<Product[]>(`http://akfix.akfix.com.tr/api/data/products/index.php?url=${list}`);
+    const productCategory = await fetchData<Category[]>(`http://akfix.akfix.com.tr/public/api/data/categories/one_categories/?url=${list}`);
 
 
   return (
@@ -67,7 +67,7 @@ interface Category {
                 productCode={"Akfix"} 
                 title={item.title} 
                 url={list+"/"+item.url} 
-                img={`https://www.akfix.com${item.cover_img}`} 
+                img={`http://akfix.akfix.com.tr${item.cover_img}`} 
                 color={productCategory[0].color} 
                 productFrameColor={productCategory[0].color}
                 borderColor={productCategory[0].color} 

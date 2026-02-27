@@ -15,7 +15,7 @@ export default async function MobilSliders(){
     language: string
   }
 
-    const data = await fetchData<MobilSlider[]>('https://www.akfix.com/api/data/sliders/')
+    const data = await fetchData<MobilSlider[]>('http://akfix.akfix.com.tr/api/data/sliders/')
 
     return(
        <MobileSliderClient data={data} />

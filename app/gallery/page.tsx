@@ -10,7 +10,7 @@ import { fetchData } from "@/lib/api";
 
 export default async function Gallery(){
 
-const data = await fetchData<[]>(`https://www.akfix.com/public/api/data/galleries/`);
+const data = await fetchData<[]>(`http://akfix.akfix.com.tr/public/api/data/galleries/`);
 
 
   return (

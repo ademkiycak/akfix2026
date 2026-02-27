@@ -20,6 +20,7 @@ interface SubMenu{
     title: string
     url: string
     img_url: string
+    banner_img_url:string
 
 }
 
@@ -55,8 +56,8 @@ const MenuClient = ({data} : {data:Menus[]}) =>{
                                 item.sub_menu.map((sub_item: SubMenu, index) => (
                                     <li key={index}>
                                         <Link href={`/${sub_item.url}`} className="flex items-center gap-2 hover:text-gray-600 mx-5">
-                                            <div className="w-[45] h-[45] bg-gray-100 rounded-full flex justify-center items-center p-3 bg-center bg-no-repeat bg-cover ">
-                                                <Image className="w-full h-auto" src={`https://www.akfix.com${sub_item.img_url}`} alt="Akfix" width={20} height={27} priority />
+                                            <div className="w-[45] h-[45] rounded-full flex justify-center items-center p-3 bg-center bg-no-repeat bg-cover" style={{backgroundColor: `${sub_item.banner_img_url}`}}>
+                                                <Image className="w-full h-auto" src={`http://akfix.akfix.com.tr${sub_item.img_url}`} alt="Akfix" width={20} height={27} priority />
                                             </div>
                                             {sub_item.title}
                                         </Link>

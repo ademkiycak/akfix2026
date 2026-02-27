@@ -22,8 +22,8 @@ export default function ProductBrochure({product_brochures}: BrochureItem){
                     <BrochureItem 
                         key={index} 
                         title={item.brochure_title} 
-                        url={`https://www.akfix.com${item.brochure_url}`} 
-                        cover={`https:www.akfix.com${item.brochure_cover}`} 
+                        url={`http://akfix.akfix.com.tr${item.brochure_url}`} 
+                        cover={`http://akfix.akfix.com.tr${item.brochure_cover}`} 
                     />
                 ))
             }

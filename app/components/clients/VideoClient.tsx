@@ -9,6 +9,7 @@ interface VideoItem{
     videos:[]
     title:string
     img_url:string
+    video_url:string
 }
 
 
@@ -28,8 +29,8 @@ export default function VideoClient({ data }: { data: VideoItem[] }){
 
             <div className="container mx-auto m-10 flex flex-wrap justify-center gap-5 gap-y-6">
                 {
-                    data.map((item, index) => (
-                        <VideoItem key={index} title={item.title} url="#" cover={`https://www.akfix.com${item.img_url}`} coverHover="/images/videos/hover/1.webp" />
+                    data.slice(0, 12).map((item, index) => (
+                        <VideoItem key={index} title={item.title} url={`https://www.youtube.com/watch?v=${item.video_url}`} cover={`http://akfix.akfix.com.tr${item.img_url}`} coverHover="/images/videos/hover/1.webp" />
                     ))
                 }
        
@@ -44,7 +45,7 @@ export default function VideoClient({ data }: { data: VideoItem[] }){
 
 function VideoItem({title = "", url = "", cover = "", coverHover = ""}){
     return (
-        <Link href={url} className="w-[40%] md:w-[335] h-auto flex flex-col gap-4 relative group">
+        <Link href={url} target={"_blank"} className="w-[40%] md:w-[335] h-auto flex flex-col gap-4 relative group">
             <div className="w-auto h-auto p-0.5 rounded-lg bg-akfix-green absolute z-50 top-2 right-2 flex justify-center items-center">
                 <FontAwesomeIcon icon={faYoutube} fontSize={22} className="text-white" />
             </div>

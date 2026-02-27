@@ -33,7 +33,7 @@ export default function SliderClient({ data }: { data: Slider[] }) {
         {data.map((item, index) => (
           <SwiperSlide key={index}>
             <Image 
-                src={`https://www.akfix.com${item.img_url}`}
+                src={`http://akfix.akfix.com.tr${item.img_url}`}
                 alt={item.title || "Banner"} 
                 width={1920} 
                 height={600} 

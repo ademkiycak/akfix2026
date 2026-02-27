@@ -24,7 +24,7 @@ export default function GalleryList({gallery}: GalleryItem){
                     
            {
                 gallery.map((item: Gallery, index) => (
-                    <GaleryItem key={index} cover={`https://www.akfix.com${item.img_url}`} />
+                    <GaleryItem key={index} cover={`http://akfix.akfix.com.tr${item.img_url}`} />
                 ))
            }
                 

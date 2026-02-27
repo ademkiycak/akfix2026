@@ -15,7 +15,7 @@ export default function ProductGallery({product_galleries}: ProductGalleryItem){
 
                 {
                     product_galleries.map((item, index) => (
-                        <GaleryItem key={index} cover={`https://www.akfix.com${item}`} />
+                        <GaleryItem key={index} cover={`http://akfix.akfix.com.tr${item}`} />
                     ))
                 }
               
