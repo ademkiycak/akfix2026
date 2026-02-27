@@ -102,8 +102,7 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
 function ProductCategoryItem({title = "", url = "", icon = "", textColor = "#707070", bg = ""}){
     return <>
         <Link href={url} className="w-[192] h-auto flex flex-col items-center gap-5 group">
-            <div className="w-[192] h-[192] bg-center bg-no-repeat bg-cover rounded-full relative flex justify-center items-center" 
-                style={{ backgroundImage: `url(${bg})` }}>
+            <div className="w-[192] h-[192] bg-center bg-no-repeat bg-cover rounded-full relative flex justify-center items-center" style={{ backgroundImage: `url('${bg}')` }}>
                 <Image className="w-[86] h-auto animate-[slideDown_0.2s_ease-out_forwards] group-hover:animate-[slideDown2_0.2s_ease-out_forwards]" src={icon} alt="Akfix" width={86} height={120} priority />
             </div>
             <strong className="text-2xl font-extrabold text-center leading-7 group-hover-text-akfix-gray" style={{color: `rgb(${textColor})`}}>{title}</strong>
@@ -118,8 +117,7 @@ function ProductCategoryItem({title = "", url = "", icon = "", textColor = "#707
 function ProductMobileCategoryItem({title = "", url = "", icon = "", textColor = "#707070", bg = ""}){
     return <>
         <Link href={url} className="w-[130] h-auto flex flex-col items-center gap-5 group">
-            <div className="w-[130] h-[130] bg-center bg-no-repeat bg-cover rounded-full relative flex justify-center items-center" 
-                style={{ backgroundImage: `url(${bg})` }}>
+            <div className="w-[130] h-[130] bg-center bg-no-repeat bg-cover rounded-full relative flex justify-center items-center" style={{ backgroundImage: `url('${bg}')` }}>
             <Image className="w-[60] h-auto animate-[slideDown_0.2s_ease-out_forwards] group-hover:animate-[slideDown2_0.2s_ease-out_forwards]" src={icon} alt="Akfix" width={86} height={120} priority />
             </div>
             <strong className="text-xl font-extrabold text-center leading-6 group-hover-text-akfix-gray" style={{color: `rgb(${textColor})`}}>{title}</strong>

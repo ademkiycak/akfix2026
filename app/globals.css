@@ -2,7 +2,6 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #ffffff;
   --akfix-red: 192, 0, 32;
   --akfix-green: 0, 174, 155;
   --akfix-gray-light: 146, 146, 146;
@@ -11,7 +10,6 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -19,7 +17,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
-    --foreground: #ededed;
   }
 }
 
