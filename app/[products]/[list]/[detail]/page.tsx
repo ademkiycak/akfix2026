@@ -1,4 +1,3 @@
-
 import Brands from "@/components/layout/Brands";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -59,6 +58,10 @@ export default async function Products({ params }: { params: { list: string, det
 
     const productCategory = await fetchData<Category[]>(BaseUrl()+`/api/data/categories/one_categories/?url=${list}`);
     const productDetail = await fetchData<Product[]>(BaseUrl()+`/api/data/products/detail/?url=${detail}`);
+
+
+
+
 
 
   return (

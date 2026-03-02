@@ -2,16 +2,30 @@
 import Brands from "@/components/layout/Brands";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { faCalendarAlt, faChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { BaseUrl } from "@/lib/baseurl";
+import { fetchData } from "@/lib/api";
 
 export default async function Blog(){
 
 
+    interface BlogItem{
+        id:number
+        title:string
+        url:string
+        blog_summary:string
+        img_url:string
+        blog_tags:string
+        createdAt:string
+    }
+
+
+    const data = await fetchData<BlogItem[]>(BaseUrl()+"/api/data/blogs");
 
   return (
     <>
@@ -36,50 +50,29 @@ export default async function Blog(){
           
           {/** Blog item */}
 
-          <BlogItem 
-            title="How is Thermal and Sound Insulation Performed in the Roof?"
-            url=""
-            cover="/images/blog/blog-img-1.jpg"
-            summary="Garrets are one of the areas where the house experiences the most heat loss and external sounds are heard most intensely. Therefore, effective heat and sound insulation in the roof increases comfort and saves energy."
-            tags="Thermcoat, pu foam, sound insulation"
-            create_at="16.02.2026"
-          />
 
+          {
+              data.slice(0, 20).map((item, index) => (
+                  <BlogItem 
+                      key={index}
+                      title ={item.title}
+                      url={`blog/${item.url}`}
+                      cover={BaseUrl()+item.img_url}
+                      summary={item.blog_summary}
+                      tags={item.blog_tags}
+                      create_at={new Date(item.createdAt).toLocaleDateString("tr-TR").toString()}
+                  />
+              ))
+          }
 
-          <BlogItem 
-            title="How is Thermal and Sound Insulation Performed in the Roof?"
-            url=""
-            cover="/images/blog/blog-img-2.jpg"
-            summary="Garrets are one of the areas where the house experiences the most heat loss and external sounds are heard most intensely. Therefore, effective heat and sound insulation in the roof increases comfort and saves energy."
-            tags="Thermcoat, pu foam, sound insulation"
-            create_at="16.02.2026"
-          />
-
-
-          <BlogItem 
-            title="How is Thermal and Sound Insulation Performed in the Roof?"
-            url=""
-            cover="/images/blog/blog-img-3.jpg"
-            summary="Garrets are one of the areas where the house experiences the most heat loss and external sounds are heard most intensely. Therefore, effective heat and sound insulation in the roof increases comfort and saves energy."
-            tags="Thermcoat, pu foam, sound insulation"
-            create_at="16.02.2026"
-          />
-
-
-          <BlogItem 
-            title="How is Thermal and Sound Insulation Performed in the Roof?"
-            url=""
-            cover="/images/blog/blog-img-4.jpg"
-            summary="Garrets are one of the areas where the house experiences the most heat loss and external sounds are heard most intensely. Therefore, effective heat and sound insulation in the roof increases comfort and saves energy."
-            tags="Thermcoat, pu foam, sound insulation"
-            create_at="16.02.2026"
-          />
 
         </div>
 
 
 
         <div className="w-full max-w-full lg:max-w-[310] h-auto flex flex-col gap-8">
+
+        {/* 
 
           <div className="w-full flex flex-col gap-3">
             <strong className="text-[#222]">Blog Categories</strong>
@@ -104,60 +97,24 @@ export default async function Blog(){
               </li>
             </ul>
           </div>
+        */}
 
 
           <div className="w-full flex flex-col gap-3">
             <strong className="text-[#222]">Latest Posts</strong>
 
+            {
+              data.map((item, index) => (
+                  <LatestPostItem 
+                    key={index}
+                    title={item.title}
+                    url={`blog/${item.url}`}
+                    create_at={new Date(item.createdAt).toLocaleDateString("tr-TR").toString()}
+                  />
 
-              <LatestPostItem 
-                title="How is Thermal and Sound Insulation Performed in the Roof?"
-                url=""
-                create_at="22.08.2025"
-              />
+              ))
+            }
 
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="Zero Risk In Insulation, Excellent Result: Akfix Aquazero"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="How to Apply Silicone in 4 Steps?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="Zero Risk In Insulation, Excellent Result: Akfix Aquazero"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="How to Apply Silicone in 4 Steps?"
-                url=""
-                create_at="22.08.2025"
-              />
-    
             
           </div>
 
@@ -225,9 +182,6 @@ function BlogItem({title = "", url = "", cover = "", summary = "", tags = "", cr
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </Link>
 
-                <Link href={""} className="text-gray-600 hover:text-[#00AE9B] text-lg">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </Link>
               </div>
 
             </div>

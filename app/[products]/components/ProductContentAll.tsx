@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react";
 import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import VideoModal from "@/app/videos/components/VideoModal";
 
 
 interface Type{
@@ -29,6 +31,21 @@ interface BrochureItem {
 
 
 export default function ProducyContentAll({cover_img, product_images, product_galleries, product_videos, product_brochures, color}: Type){
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [videoId, setVideoId] = useState("");
+
+
+    const openVideo = (id: string) => {
+        setVideoId(id);
+        setIsOpen(true);
+    };
+
+    const closeVideo = () => {
+        setIsOpen(false);
+        setVideoId("");
+    };
+
     return(
             <PhotoProvider>
               <div className="w-full lg:w-[530] h-auto flex flex-col">
@@ -55,14 +72,13 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                 }
 
 
-
                 
 
                 {
                     /* Product gallery */
                     product_galleries.map((item:string, index) => (
-                        <PhotoView key={index} src={BaseUrl()+`{item}`}>
-                            <div className="w-full h-[110] bg-amber-50 rounded-xl relative overflow-hidden border border-white hover:border hover:border-[#00AE9B]">
+                        <PhotoView key={index} src={BaseUrl()+`${item}`}>
+                            <div className="w-full h-[110] bg-amber-50 rounded-xl relative overflow-hidden border border-white hover:border hover:border-[#00AE9B] cursor-pointer hover:opacity-70">
                                 <Image src={BaseUrl()+`${item}`} fill className="w-auto h-fit object-cover" alt="Product" loading="lazy" />
                             </div>
                         </PhotoView>
@@ -75,7 +91,7 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                 {
                     /* Product videos */
                     product_videos.map((item:VideoItem, index) => (
-                        <Link key={index} href={`https://www.youtube.com/watch?v=${item.video_url}`} target={"_blank"}>
+                        <Link key={index} onClick={() => openVideo(item.video_url)} href={"#"}>
                         <div className="w-full h-[110] bg-amber-50 rounded-xl relative overflow-hidden border border-white hover:border hover:border-[#00AE9B] cursor-pointer hover:opacity-90">
                             <div className="w-auto h-auto p-0.5 rounded-lg bg-akfix-green absolute z-50 top-2 right-2 flex justify-center items-center">
                             <FontAwesomeIcon icon={faYoutube} fontSize={22} className="text-white" />
@@ -85,6 +101,14 @@ export default function ProducyContentAll({cover_img, product_images, product_ga
                         </Link>
                     ))
                 }
+
+
+                <VideoModal
+                    isOpen={isOpen}
+                    onClose={closeVideo}
+                    videoId={videoId}
+                />
+
                 
 
 

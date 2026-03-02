@@ -151,7 +151,7 @@ export default async function Footer(){
                     </div>
 
                     <div className="flex gap-3 my-5">
-                        <Link href={""} className="w-[90] h-[25] p-4 flex justify-center items-center relative hover:opacity-80">
+                        <Link href={"https://apps.apple.com/tr/app/akfix/id993230336?l=tr"} target={"_blank"} className="w-[90] h-[25] p-4 flex justify-center items-center relative hover:opacity-80">
                         <Image
                             src="/images/app-store.png"
                             alt="app store"
@@ -161,7 +161,7 @@ export default async function Footer(){
                         </Link>
 
 
-                        <Link href={""} className="w-[90] h-[25] p-4 flex justify-center items-center relative hover:opacity-80">
+                        <Link href={"https://play.google.com/store/apps/details?id=com.akfix.navigationdrawer&hl=en_US"} target={"_blank"} className="w-[90] h-[25] p-4 flex justify-center items-center relative hover:opacity-80">
                         <Image
                             src="/images/google-play.png"
                             alt="google play"
@@ -185,7 +185,7 @@ export default async function Footer(){
                 </div>
 
                 <div className="flex flex-wrap flex-col items-start lg:items-end mt-10 lg:mt-0 gap-7">
-                    <Link href={""} className="w-[150] h-[36] p-4 flex justify-center items-center relative hover:opacity-80">
+                    <Link href={"https://www.akkim.net"} target={"_blank"} className="w-[150] h-[36] p-4 flex justify-center items-center relative hover:opacity-80">
                     <Image
                         src="/images/akkim-logo.svg"
                         alt="Akkim"

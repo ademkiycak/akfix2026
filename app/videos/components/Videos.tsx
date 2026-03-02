@@ -1,9 +1,11 @@
 "use client"
+import { useState } from "react";
 import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import VideoModal from "./VideoModal";
 
 
 interface VideoItem{
@@ -19,21 +21,48 @@ interface Videos{
 
 
 export default function VideoList({videos}: VideoItem){
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [videoId, setVideoId] = useState("");
+
+
+    const openVideo = (id: string) => {
+    setVideoId(id);
+    setIsOpen(true);
+    };
+
+    const closeVideo = () => {
+        setIsOpen(false);
+        setVideoId("");
+    };
+
+
     return(
 
-            <>
-                {
-                    videos.map((item: Videos, index) => (
-                        <VideoItem 
-                            key={index} 
-                            title={item.title}
-                            url={`https://www.youtube.com/watch?v=${item.video_url}`}
-                            cover={BaseUrl()+item.img_url}
-                            coverHover="/images/videos/hover/1.webp" />
+        <>
 
-                    ))
-                }
-            </>
+      
+            {
+                videos.map((item: Videos, index) => (
+                    <VideoItem 
+                        key={index} 
+                        onClick={() => openVideo(item.video_url)}
+                        title={item.title}
+                        cover={BaseUrl()+item.img_url}
+                        coverHover="/images/videos/hover/1.webp" />
+
+                ))
+            }
+
+
+            <VideoModal
+                isOpen={isOpen}
+                onClose={closeVideo}
+                videoId={videoId}
+            />
+
+
+        </>
     )
 }
 
@@ -41,9 +70,9 @@ export default function VideoList({videos}: VideoItem){
 
 
 
-function VideoItem({title = "", url = "", cover = "", coverHover = ""}){
+function VideoItem({ onClick = () => {}, title = "",  cover = "", coverHover = ""}){
     return (
-      <Link href={url} target={"_blank"} className="w-full h-auto flex flex-col gap-3 relative group">
+      <Link onClick={onClick} href="#" className="w-full h-auto flex flex-col gap-3 relative group">
           <div className="w-auto h-auto p-0.5 rounded-lg bg-akfix-green absolute z-50 top-2 right-2 flex justify-center items-center">
             <FontAwesomeIcon icon={faYoutube} fontSize={22} className="text-white" />
           </div>

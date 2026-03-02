@@ -1,26 +1,38 @@
-"use client"
 
 import Brands from "@/components/layout/Brands";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarAlt, faChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { fetchData } from "@/lib/api";
+import { BaseUrl } from "@/lib/baseurl";
+import parse from "html-react-parser";
 
-export default function Blog(){
+export default async function Blog({ params }: { params: { slug: string } }){
 
+  interface Blog{
+    id:number
+    title:string
+    url:string
+    more_information:string
+    blog_tags:string
+    createdAt:string
+  }
 
+  const { slug } = await params
+
+  const data_list = await fetchData<Blog[]>(BaseUrl()+"/api/data/blogs");
+  const data = await fetchData<Blog[]>(`${BaseUrl()}/api/data/blogs/detail/?url=${slug}`);
 
   return (
     <>
       <Header />
 
       <Breadcrumb
-        title="What is a Chemical Anchor? How To Apply?"
-        color="#00AE9B"
+        title={data[0].title}
         items={[
           { href: "/", icon: faHome },
           { label: "Akfix", href: "/about" },
@@ -35,9 +47,9 @@ export default function Blog(){
         
         <div className="w-full max-w-[900] h-auto flex flex-col space-y-4">
           
-          {/** Blog item */}
+          { /** Blog item */ }
 
-          <div className="w-full h-auto flex flex-col bg-gray-50 p-2 rounded-lg space-y-3 text-[16px] text-akfix-gray leading-7
+          <div className="w-full h-auto flex flex-col bg-gray-50 p-4 rounded-lg space-y-3 text-[16px] text-akfix-gray leading-7
           [&_strong]:font-bold
           [&_strong]:text-xl
           [&_strong]:mt-5
@@ -49,7 +61,6 @@ export default function Blog(){
           [&_h3]:mt-5
           [&_h4]:text-lg
           [&_h4]:font-bold
-          [
           [&_h5]:text-lg
           [&_h5]:font-bold
           [&_h5]:mt-5
@@ -57,42 +68,20 @@ export default function Blog(){
           [&>a]:text-[#4197D2]
           [&_a]:hover:text-[#C00020]
           [&_a]:w-fit
+          [&_img]:w-full
+          [&_img]:h-auto
+          [&_img]:mt-5
+          [&_ul]:list-disc
+          [&_ul]:list-inside
+          [&_ul_li_strong]:text-lg
           [&>a]:leading-4">
-            <Image src={"/images/blog/blog-big-img-1.jpg"} width={700} height={299}  alt="blog" className="w-full h-auto object-cover rounded-lg" />
-              <strong>How is Thermal and Sound Insulation Performed in the Roof?</strong>
+            
 
-              <p>
-                Garrets are one of the areas where the house experiences the most heat loss and external sounds are heard most intensely. Therefore, effective heat and sound insulation in the roof increases comfort and saves energy. So how is the insulation of the garret performed, which materials should be preferred, what should be considered during the application? Here in this article, you can find all the details you need!
-              </p>
+            { parse(data[0].more_information) }
 
-              <h2>
-                What is the Difference Between Chemical Anchor and Physical Anchor?
-              </h2>
-              <p>
-                Chemical anchors are quite advantageous compared to physical dowels. While the area of use of the physical anchors is limited, the chemical anchors have no limit. The physical anchor, which has a certain shape, is only used in appropriately shaped and formed areas. The chemical anchor, on the other hand, takes the shape of the area where it is located and provides a wide area of use.
-              </p>
-
-              <h2>Where is Chemical Anchor Used?</h2>
-              <p>You can use it safely in your chemical anchor structures, construction and industry. It has a wide range of uses, from embedding steel and ironstones in concrete, fixing support structural elements, mounting and fixing large poles, mounting installation materials, installing passive, temporary and permanent anchors and studs, and fixing large screws and metal dowels to the concrete floor.</p>
-              <p>You can also easily apply chemical anchors in your homes. You can make applications such as fixing the balcony railing, fixing something to the wall in the radiator set, mounting towel racks and holding apparatus, etc.</p>
-
-
-              <img src="/images/blog/blog-big-img-1.jpg" alt="blog" className="w-full h-auto object-cover rounded-lg" />
-
-              <h3>How is Chemical Anchor Applied?</h3>
-              <p>Depending on the chemical anchor packaging form, the gun varies. It can be used with its own special gun or silicone gun. Clean the inside of the surface you are drilling, remove dust and dirt. After placing the chemical anchor in the gun, attach it to the stirrer tip, squeeze the product about 15 cm so that the product is completely mixed out, then fill the gap you drilled. The stirring rod at the tip will remove component A and B by stirring.</p>
-
-              <img src="/images/blog/blog-big-img-1.jpg" alt="blog" className="w-full h-auto object-cover rounded-lg" />
-
-              <h3>Is Chemical Anchor Reused?</h3>
-              <p>You can repeatedly use a chemical anchor that has been opened and used before. The important thing is that the chemicals in the chemical anchor should not be mixed together. The product at the stirring tip is not reused, the tip is removed and reused with the new stirring tip. Whether single-cartridge or double-cartridge, chemical anchors used once can be reused.</p>
-
-              <Link href={""}>Video url 1</Link>
-              <Link href={""}>Video url 2</Link>
-              <Link href={""}>Video url 3</Link>
 
             <div className="mt-3 text-gray-600">
-              <span className="text-xs">Tags : Thermcoat, pu foam, sound insulation</span>
+              <span className="text-xs">{ data[0].blog_tags }</span>
             </div>
 
             <hr className="text-gray-300 my-4" />
@@ -101,7 +90,7 @@ export default function Blog(){
 
               <div className="flex flex-row space-x-1">
                 <FontAwesomeIcon icon={faCalendarAlt} className="text-akfix-green" />
-                <span className="text-xs font-medium text-gray-500"> 16.02.2026 </span>
+                <span className="text-xs font-medium text-gray-500"> { new Date(data[0].createdAt).toLocaleDateString("tr-TR").toString() } </span>
               </div>
 
 
@@ -118,9 +107,6 @@ export default function Blog(){
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </Link>
 
-                <Link href={""} className="text-gray-600 hover:text-[#00AE9B] text-lg">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </Link>
               </div>
 
             </div>
@@ -133,83 +119,47 @@ export default function Blog(){
 
 
         <div className="w-full max-w-full lg:max-w-[310] h-auto flex flex-col gap-8">
-
-          <div className="w-full flex flex-col gap-3">
-            <strong className="text-[#222]">Blog Categories</strong>
-            <ul>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3" /> DIY SOLUTIONS</Link>
-              </li>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU FOAMS</Link>
-              </li>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU SEALANTS</Link>
-              </li>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> ADHESIVES</Link>
-              </li>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> AEROSOLS</Link>
-              </li>
-              <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> COATINGS</Link>
-              </li>
-            </ul>
-          </div>
+          {/* 
+            <div className="w-full flex flex-col gap-3">
+              <strong className="text-[#222]">Blog Categories</strong>
+              <ul>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3" /> DIY SOLUTIONS</Link>
+                </li>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU FOAMS</Link>
+                </li>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU SEALANTS</Link>
+                </li>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> ADHESIVES</Link>
+                </li>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> AEROSOLS</Link>
+                </li>
+                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
+                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> COATINGS</Link>
+                </li>
+              </ul>
+            </div>
+           */}
 
 
           <div className="w-full flex flex-col gap-3">
             <strong className="text-[#222]">Latest Posts</strong>
 
+            {
+              data_list.map((item, index) => (
+                  <LatestPostItem 
+                    key={index}
+                    title={item.title}
+                    url={`/blog/${item.url}`}
+                    create_at={new Date(item.createdAt).toLocaleDateString("tr-TR").toString()}
+                  />
 
-              <LatestPostItem 
-                title="How is Thermal and Sound Insulation Performed in the Roof?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="Zero Risk In Insulation, Excellent Result: Akfix Aquazero"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="How to Apply Silicone in 4 Steps?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="What is a Chemical Anchor? How To Apply?"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="Zero Risk In Insulation, Excellent Result: Akfix Aquazero"
-                url=""
-                create_at="22.08.2025"
-              />
-
-              <LatestPostItem 
-                title="How to Apply Silicone in 4 Steps?"
-                url=""
-                create_at="22.08.2025"
-              />
+              ))
+            }
     
             
           </div>

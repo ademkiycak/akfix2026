@@ -1,8 +1,11 @@
+"use client"
+import { useState } from "react";
 import { BaseUrl } from "@/lib/baseurl";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import VideoModal from "@/app/videos/components/VideoModal";
 
 
 interface VideoItem{
@@ -17,15 +20,42 @@ interface Videos{
 
 
 export default function ProductVideos({product_videos}: VideoItem){
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [videoId, setVideoId] = useState("");
+
+
+    const openVideo = (id: string) => {
+    setVideoId(id);
+    setIsOpen(true);
+    };
+
+    const closeVideo = () => {
+        setIsOpen(false);
+        setVideoId("");
+    };
+
     return(
         <div className="w-full lg:container mx-auto m-6 gap-y-6 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5 lg:gap-y-6">
 
             {
                 product_videos.map((item:Videos, index) => (
-                    <VideoItem key={index} title={item.video_title} url={`https://www.youtube.com/watch?v=${item.video_url}`} 
-                    cover={BaseUrl()+`${item.video_cover}`} coverHover="/images/videos/hover/1.webp" />
+                    <VideoItem 
+                        key={index} 
+                        title={item.video_title} 
+                        onClick={() => openVideo(item.video_url)}
+                        cover={BaseUrl()+`${item.video_cover}`} 
+                        coverHover="/images/videos/hover/1.webp" 
+                    />
                 ))
             }
+
+
+            <VideoModal
+                isOpen={isOpen}
+                onClose={closeVideo}
+                videoId={videoId}
+            />
 
     
         </div>
@@ -34,9 +64,9 @@ export default function ProductVideos({product_videos}: VideoItem){
 
 
 
-function VideoItem({title = "", url = "", cover = "", coverHover = ""}){
+function VideoItem({onClick = () => {}, title = "", cover = "", coverHover = ""}){
     return (
-      <Link href={url} target={"_blank"} className="w-full h-auto flex flex-col gap-3 relative group">
+      <Link onClick={onClick} href="#" className="w-full h-auto flex flex-col gap-3 relative group">
           <div className="w-auto h-auto p-0.5 rounded-lg bg-akfix-green absolute z-50 top-2 right-2 flex justify-center items-center">
             <FontAwesomeIcon icon={faYoutube} fontSize={22} className="text-white" />
           </div>
