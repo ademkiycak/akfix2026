@@ -1,5 +1,7 @@
 import { fetchData } from "@/lib/api";
 import { BaseUrl } from "@/lib/baseurl";
+import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons/faCircleChevronRight";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -48,9 +50,7 @@ export default async function Blogs() {
 
             <hr className="container mx-auto my-15 text-gray-200" />
 
-
-            <div className="container mx-auto my-10 flex flex-wrap justify-between gap-5 px-5 mb-25">
-
+            <div className="container mx-auto my-10 flex flex-wrap justify-between gap-5 px-5 mb-10">
 
                 {
                     data.slice(3, 6).map((item, index) => (
@@ -65,6 +65,11 @@ export default async function Blogs() {
 
             </div>
 
+
+            <div className="container px-5 mx-auto mb-20 flex justify-start xl:justify-end">
+                <Link href={"/blog/list"} className="font-bold text-sm text-gray-600 hover:text-red-700"> <FontAwesomeIcon icon={faCircleChevronRight} fontSize={14} /> All Blog List</Link>
+            </div>
+            
         </>
     );
 }

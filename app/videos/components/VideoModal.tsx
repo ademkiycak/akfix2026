@@ -21,7 +21,7 @@ export default function VideoModal({
 
       {/* Modal container */}
       <div className="fixed inset-0 flex items-center justify-center p-4">
-        <Dialog.Panel className="relative w-full max-w-7xl bg-white rounded-xl shadow-xl">
+        <Dialog.Panel className="relative w-full max-w-6xl bg-transparent rounded-xl shadow-xl">
           
           {/* Kapat butonu */}
           <button

@@ -6,7 +6,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faCalendarAlt, faChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faChevronRight, faCircleChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { fetchData } from "@/lib/api";
 import { BaseUrl } from "@/lib/baseurl";
 import parse from "html-react-parser";
@@ -119,31 +119,6 @@ export default async function Blog({ params }: { params: { slug: string } }){
 
 
         <div className="w-full max-w-full lg:max-w-[310] h-auto flex flex-col gap-8">
-          {/* 
-            <div className="w-full flex flex-col gap-3">
-              <strong className="text-[#222]">Blog Categories</strong>
-              <ul>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3" /> DIY SOLUTIONS</Link>
-                </li>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU FOAMS</Link>
-                </li>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> PU SEALANTS</Link>
-                </li>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> ADHESIVES</Link>
-                </li>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> AEROSOLS</Link>
-                </li>
-                <li className="py-2 text-sm font-bold text-akfix-gray hover:text-[#C00020]">
-                  <Link href={""}> <FontAwesomeIcon icon={faChevronRight} className="text-xs mr-2 w-3 h-3"  /> COATINGS</Link>
-                </li>
-              </ul>
-            </div>
-           */}
 
 
           <div className="w-full flex flex-col gap-3">
@@ -161,13 +136,13 @@ export default async function Blog({ params }: { params: { slug: string } }){
               ))
             }
     
+          <Link href={"/blog/list"} className="font-bold text-sm text-gray-600 hover:text-red-700 mt-5"> 
+            <FontAwesomeIcon icon={faCircleChevronRight} fontSize={14} /> All Blog List</Link>
             
           </div>
 
 
-
         </div>
-
 
 
       </section>

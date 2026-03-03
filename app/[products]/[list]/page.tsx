@@ -147,14 +147,14 @@ function ProductItem({productCode="", title = "", url = "", img = "", color = "#
                  group-hover:border-[#C00020]`} style={{borderColor: `rgba(${borderColor ? borderColor : "192, 0, 32"}, 0.3)`, backgroundColor: `rgba(${productFrameColor ? productFrameColor : "192, 0, 32"}, 0.1)`}} >
   
               <div className="w-full h-[250] lg:h-[350] relative">
-                <Image src={img} fill className="object-contain" alt="product" loading="lazy" />
+                <Image src={img} fill className="object-contain" alt="product" unoptimized />
               </div>
               
           </div>
-         <div className="flex flex-col gap-1 mt-2 mb-7">
-            <strong className="text-sm lg:text-xl group-hover:text-[#C00020]" style={{color: `rgb(${color})`}}>{productCode}</strong>
-            <strong className="text-gray-500 text-sm group-hover:text-[#C00020]">{title}</strong>
-         </div>
+          <div className="flex flex-col gap-1 mt-2 mb-7">
+              <strong className="text-sm lg:text-xl group-hover:text-[#C00020]" style={{color: `rgb(${color})`}}>{productCode}</strong>
+              <strong className="text-gray-500 text-[16px] group-hover:text-[#C00020]">{title}</strong>
+          </div>
       </Link>
     );
 }

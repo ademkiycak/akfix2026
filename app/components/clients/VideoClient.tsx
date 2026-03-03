@@ -27,8 +27,8 @@ export default function VideoClient({ data }: { data: VideoItem[] }){
 
 
     const openVideo = (id: string) => {
-    setVideoId(id);
-    setIsOpen(true);
+        setVideoId(id);
+        setIsOpen(true);
     };
 
     const closeVideo = () => {

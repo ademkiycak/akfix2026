@@ -2,7 +2,7 @@
 import Brands from "@/components/layout/Brands";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { faCalendarAlt, faCircleChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg
 import { BaseUrl } from "@/lib/baseurl";
 import { fetchData } from "@/lib/api";
 
-export default async function Blog(){
+export default async function AllBlogBlog(){
 
 
     interface BlogItem{
@@ -44,19 +44,15 @@ export default async function Blog(){
 
 
       {/* Blog */}
-      <section className="w-full lg:w-5xl xl:w-7xl mx-auto p-5 mt-10 mb-20 flex justify-between flex-col lg:flex-row gap-15 lg:gap-20">
+      <section className="container mx-auto p-5 mt-10 mb-20 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         
-        <div className="w-full max-w-[900] h-auto flex flex-col space-y-4">
-          
           {/** Blog item */}
-
-
           {
-              data.slice(0, 10).map((item, index) => (
+              data.map((item, index) => (
                   <BlogItem 
                       key={index}
                       title ={item.title}
-                      url={`blog/${item.url}`}
+                      url={`/blog/${item.url}`}
                       cover={BaseUrl()+item.img_url}
                       summary={item.blog_summary}
                       tags={item.blog_tags}
@@ -64,41 +60,6 @@ export default async function Blog(){
                   />
               ))
           }
-
-          <Link href={"/blog/list"} className="font-bold text-sm text-gray-600 hover:text-red-700 mt-5"> 
-            <FontAwesomeIcon icon={faCircleChevronRight} fontSize={14} /> All Blog List</Link>
-
-        </div>
-
-
-
-        <div className="w-full max-w-full lg:max-w-[310] h-auto flex flex-col gap-8">
-
-
-          <div className="w-full flex flex-col gap-3">
-            <strong className="text-[#222]">Latest Posts</strong>
-
-            {
-              data.map((item, index) => (
-                  <LatestPostItem 
-                    key={index}
-                    title={item.title}
-                    url={`/blog/${item.url}`}
-                    create_at={new Date(item.createdAt).toLocaleDateString("tr-TR").toString()}
-                  />
-
-              ))
-            }
-
-            
-          </div>
-
-          <Link href={"/blog/list"} className="font-bold text-sm text-gray-600 hover:text-red-700"> 
-            <FontAwesomeIcon icon={faCircleChevronRight} fontSize={14} /> All Blog List</Link>
-
-        </div>
-
-
 
       </section>
 
