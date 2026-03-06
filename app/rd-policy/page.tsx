@@ -7,7 +7,8 @@ import Image from "next/image";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { fetchData } from "@/lib/api";
 import parse from "html-react-parser";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
+import { SEO } from "@/lib/seo";
 
 
 interface RdPolicy{
@@ -17,15 +18,77 @@ interface RdPolicy{
   img_url: string
 }
 
-export default async function RdPolicy(){
 
+export async function generateMetadata() {
+
+  const post = await fetch(BaseUrl()+`/api/data/company/rd_policy/`)
+    .then(res => res.json())
+
+  return {
+    title: post[0].title,
+    openGraph: {
+      title: post[0].title,
+      url: `${SEO.siteUrl}`,
+     images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: post[0].title,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/akfix`
+    }
+  }
+}
+
+
+export default async function RdPolicy(){
 
   const data = await fetchData<RdPolicy[]>(BaseUrl()+"/api/data/company/rd_policy/");
 
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: data[0].title,
+    url: `${BaseUrl()}/rd-policy`,
+    description: data[0].description.replace(/<[^>]*>?/gm, ""),
+    about: {
+      "@type": "Organization",
+      name: "Akkim Yapı Kimyasalları A.Ş.",
+      brand: {
+        "@type": "Brand",
+        name: "Akfix"
+      }
+    }
+  }
+
 
   return (
     <>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+      />
+
+
       <Header />
 
       <Breadcrumb

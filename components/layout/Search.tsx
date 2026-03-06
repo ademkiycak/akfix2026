@@ -26,11 +26,11 @@ export default function Search(){
 
     useEffect(() => {
         const fetchData = async () => {
-        setLoading(true);
-        const res = await fetch(BaseUrl()+`/api/data/products/all_products.php?languageID=2`);
-        const data = await res.json();
-        setAllProducts(data);
-        setLoading(false);
+            setLoading(true);
+            const res = await fetch(BaseUrl()+`/api/data/products/search_list_products.php`);
+            const data = await res.json();
+            setAllProducts(data);
+            setLoading(false);
         };
 
         fetchData();
@@ -77,17 +77,16 @@ export default function Search(){
                     query && (
                          <>
 
-                        <div className="w-auto h-auto max-h-[700] bg-white absolute left-2 right-2 top-[47] rounded-b-xl z-50 border border-gray-300 border-t-0 flex flex-col p-3 gap-1">
-                            {loading && <p>Aranıyor...</p>}
+                        <div className="w-auto h-auto max-h-[700] bg-white absolute z-90 left-2 right-2 top-[47] rounded-b-xl  border border-gray-300 border-t-0 flex flex-col">
+                            {loading && <p className="m-2">Result are listing...</p>}
                             
 
                             {filteredProducts.slice(0, 8).map((item) => (
-                                
                                 <Link 
                                 href={`/products/${item.category_url}/${item.url}`} 
                                 key={item.id} 
-                                className="text-sm font-medium text-gray-500 hover:text-[#C00020] flex items-center gap-4
-                                bg-gray-50 border border-gray-200 rounded-lg p-1 group hover:bg-white">
+                                className="text-sm font-medium text-gray-500 hover:text-[#C00020] flex items-center mx-2 my-0.5 gap-4
+                                bg-gray-50 border border-gray-200 rounded-lg p-1 group hover:bg-white first:mt-2 last:mb-2">
                                     <div className="w-15 h-[70] bg-gray-50 rounded-lg relative p-2 border border-gray-200  group-hover:bg-white">
                                         <div className="w-full h-full relative">
                                             <Image
@@ -100,7 +99,6 @@ export default function Search(){
                                     </div>
                                     {item.title}
                                 </Link>
-                               
                             ))}
 
                         </div>

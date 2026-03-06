@@ -2,29 +2,23 @@
 import Brands from "@/components/layout/Brands";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight, faHome } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchData } from "@/lib/api";
 import { BaseUrl, SiteUrl } from "@/lib/baseurl";
-import { SEO } from "@/lib/seo"
+import { SEO } from "@/lib/seo";
 
 
-// Seo Meta Tag
-export async function generateMetadata({ params }: { params: { list: string } }) {
-
-  const { list } = await params;
-
-  const post = await fetch(BaseUrl()+`/public/api/data/categories/one_categories/?url=${list}`)
-    .then(res => res.json())
-
+export function generateMetadata() {
   return {
-    title: post[0].title,
-
+    title: "New Products",
     openGraph: {
-      title: post[0].title,
+      title: "New Products",
       url: `${SEO.siteUrl}`,
-      images: [
+     images: [
         {
           url: `${SiteUrl()}/images/og.jpg`,
           width: 1200,
@@ -34,7 +28,7 @@ export async function generateMetadata({ params }: { params: { list: string } })
     },
 
     twitter: {
-      title: post[0].title,
+      title: "New Products",
       images: [
         {
           url: `${SiteUrl()}/images/og.jpg`,
@@ -45,24 +39,21 @@ export async function generateMetadata({ params }: { params: { list: string } })
     },
 
     alternates: {
-      canonical: `/products/${list}`
+      canonical: `/new-products`
     }
   }
 }
 
+export default async function NewProducts({ params }: { params: { list: string } }){
 
+const { list } = await params
 
-
-export default async function Products({ params }: { params: { list: string } }){
-
-const { list } = await params;
-
-   
 interface Product {
   id: number
   categoriesID: number
   title: string
   url: string
+  category_url: string
   cover_img: string
   isActive: boolean
   new_product: boolean
@@ -79,56 +70,24 @@ interface Category {
 }
 
 
-  const productLists = await fetchData<Product[]>(BaseUrl()+`/api/data/products/index.php?url=${list}`);
-  const productCategory = await fetchData<Category[]>(BaseUrl()+`/public/api/data/categories/one_categories/?url=${list}`);
-
-
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: productCategory[0].title,
-      image: [
-        `${BaseUrl()}${productCategory[0].img_url}`
-      ],
-      description: SEO.description,
-      brand: {
-        "@type": "Brand",
-        name: "Akfix"
-      },
-
-      manufacturer: {
-        "@type": "Organization",
-        name: "Akkim Yapı Kimyasalları A.Ş."
-      },
-      category: productCategory[0].title
-    }
-
+    const productLists = await fetchData<Product[]>(BaseUrl()+`/api/data/new_products`);
 
 
   return (
     <>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema),
-        }}
-      />
-
-
       <Header />
 
       <Breadcrumb
-        title={productCategory[0].title}
-        color={productCategory[0].color}
+        title={"New Products"}
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/akfix" },
-          { label: productCategory[0].title, href: "/products", active: true }
+          { label: "Akfix", href: "akfix" },
+          { label: "New Products", href: "/products", active: true }
         ]}
       />
 
-      <section className="w-full h-auto bg-[#FFF7F8]" style={{ backgroundColor: `rgba(${productCategory[0].color ? productCategory[0].color : "192, 0, 32"}, 0.1)` }}>
+      <section className="w-full h-auto bg-[#FFF7F8]">
         <div className="w-full lg:container mx-auto py-15 grid grid-cols-2 md:grid-cols-3 lg:flex flex-wrap justify-center lg:gap-8 px-2">
 
           {
@@ -138,11 +97,11 @@ interface Category {
                 key={index} 
                 productCode={"Akfix"} 
                 title={item.title} 
-                url={list+"/"+item.url} 
+                url={`/products/${item.category_url}/${item.url}`} 
                 img={`${BaseUrl()+item.cover_img}`} 
-                color={productCategory[0].color} 
-                productFrameColor={productCategory[0].color}
-                borderColor={productCategory[0].color} 
+                color={"192, 0, 32"} 
+                productFrameColor={"190, 190, 190"}
+                borderColor={"149, 149, 149"} 
                 newProduct={item.new_product} 
                 newDesign={item.new_design} 
               />
@@ -150,6 +109,37 @@ interface Category {
         }
 
         </div>
+
+
+        <section className="w-full h-auto flex justify-between items-center-safe py-10 px-3 md:px-20 border-t border-[#C3D7EA]">
+          
+          <Link href={""}>
+            <div className="w-auto h-auto px-3 md:px-4 py-2 bg-[#F27C00] hover:bg-gray-600 relative flex items-center text-white gap-2 md:gap-5 rounded-lg">
+              <FontAwesomeIcon icon={faChevronLeft} fontSize={12} />
+              <div className="text-right">
+                <span className="text-xs font-normal block">Previos Categories</span>
+                <strong className="text-xs md:text-sm font-bol block leading-5">Adhesives & Glues</strong>
+              </div>
+              <Image src={"/images/categories/adhesives-a.png"} width={37} height={50} alt="categories" className="hidden lg:block" />
+            </div>
+          </Link>
+
+          <span className="px-2 py-2 text-white text-sm font-semibold rounded-md hidden md:block"
+                style={{ backgroundColor: `rgb(255, 255, 255})` }}>New Products</span>
+
+          <Link href={""}>
+            <div className="w-auto h-auto px-3 md:px-4 py-2 bg-[#E13510] hover:bg-gray-600 relative flex items-center text-white gap-2 md:gap-5 rounded-lg">
+              <Image src={"/images/categories/foams-a.png"} width={37} height={50} alt="categories" className="hidden lg:block" />
+              <div className="text-left">
+                <span className="text-xs font-normal block">Previos Categories</span>
+                <strong className="text-xs md:text-sm font-bol block leading-5">Pu Foams</strong>
+              </div>
+              <FontAwesomeIcon icon={faChevronRight} fontSize={12} />
+
+            </div>
+          </Link>
+
+        </section>
 
 
       </section>
@@ -160,6 +150,7 @@ interface Category {
     </>
   );
 }
+
 
 
 
@@ -192,7 +183,7 @@ function ProductItem({productCode="", title = "", url = "", img = "", color = "#
           </div>
           <div className="flex flex-col gap-1 mt-2 mb-7">
               <strong className="text-sm lg:text-xl group-hover:text-[#C00020]" style={{color: `rgb(${color})`}}>{productCode}</strong>
-              <strong className="text-gray-500 text-sm lg:text-[16px] group-hover:text-[#C00020]">{title}</strong>
+              <strong className="text-gray-500 text-[16px] group-hover:text-[#C00020]">{title}</strong>
           </div>
       </Link>
     );

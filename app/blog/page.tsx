@@ -8,8 +8,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
 import { fetchData } from "@/lib/api";
+import { SEO } from "@/lib/seo";
+
+
+export function generateMetadata() {
+  return {
+    title: "Blog",
+    openGraph: {
+      title: "Blog",
+      url: `${SEO.siteUrl}`,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: "Blog",
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/blog`
+    }
+  }
+}
+
+
 
 export default async function Blog(){
 
@@ -27,8 +63,47 @@ export default async function Blog(){
 
     const data = await fetchData<BlogItem[]>(BaseUrl()+"/api/data/blogs");
 
+
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Blog",
+      url: `${SiteUrl()}/blog`,
+      description: SEO.description,
+      publisher: {
+        "@type": "Organization",
+        name: "Akkim Yapı Kimyasalları A.Ş.",
+      },
+      blogPost: data.map(item => ({
+        "@type": "BlogPosting",
+        headline: item.title,
+        description: item.blog_summary.replace(/<[^>]*>?/gm, ""),
+        url: `${SiteUrl()}/blog/${item.url}`,
+        datePublished: item.createdAt,
+        dateModified: item.createdAt,
+        author: {
+          "@type": "Person",
+          name: "Akfix Master Of Solutions"
+        },
+        image: SiteUrl()+item.img_url
+      }))
+    };
+
+
+
+
   return (
     <>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+      />
+
+
       <Header />
 
       <Breadcrumb
@@ -36,7 +111,7 @@ export default async function Blog(){
         color="192, 0, 32"
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "Blog", href: "/blog", active: true }
         ]}
       />

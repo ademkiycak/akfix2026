@@ -6,11 +6,44 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { fetchData } from "@/lib/api";
 import CatalogueList from "./components/Catalogue";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
+import { SEO } from "@/lib/seo";
+
+
+export function generateMetadata() {
+  return {
+    title: "Catalogues",
+    openGraph: {
+      title: "Catalogues",
+      url: `${SEO.siteUrl}`,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: "Catalogues",
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/catalogue`
+    }
+  }
+}
+
 
 export default async function Catalogue(){
-
-
 
 const data = await fetchData<[]>(BaseUrl()+`/api/data/catalogues/`);
 
@@ -23,7 +56,7 @@ const data = await fetchData<[]>(BaseUrl()+`/api/data/catalogues/`);
         color="192, 0, 32"
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "Catalogues", href: "/catalogue", active: true }
         ]}
       />

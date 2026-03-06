@@ -6,11 +6,46 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import BrochureList from "./components/Brochures";
 import { fetchData } from "@/lib/api";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
+import { SEO } from "@/lib/seo";
+
+
+
+export function generateMetadata() {
+  return {
+    title: "Brochures",
+    openGraph: {
+      title: "Brochures",
+      url: `${SEO.siteUrl}`,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: "Brochures",
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/brochures`
+    }
+  }
+}
+
+
 
 export default async function Brochures(){
-
-
 
 const data = await fetchData<[]>(BaseUrl()+`/api/data/brochures/`);
 
@@ -23,7 +58,7 @@ const data = await fetchData<[]>(BaseUrl()+`/api/data/brochures/`);
         color="192, 0, 32"
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "Brochures", href: "/brochures", active: true }
         ]}
       />

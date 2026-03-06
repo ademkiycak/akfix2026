@@ -8,8 +8,54 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarAlt, faChevronRight, faCircleChevronRight, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { fetchData } from "@/lib/api";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
 import parse from "html-react-parser";
+import { SEO } from "@/lib/seo";
+
+
+
+
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+
+  const { slug } = await params
+
+  const post = await fetch(BaseUrl()+`/api/data/blogs/detail/?url=${slug}`)
+    .then(res => res.json())
+
+  return {
+    title: post[0].title,
+
+    openGraph: {
+      title: post[0].title,
+      url: `${SEO.siteUrl}`,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: post[0].title,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/blog/${slug}`
+    }
+  }
+}
+
+
 
 export default async function Blog({ params }: { params: { slug: string } }){
 
@@ -35,7 +81,7 @@ export default async function Blog({ params }: { params: { slug: string } }){
         title={data[0].title}
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "What is a Chemical Anchor? How To Apply?", href: "/blog", active: true }
         ]}
       />

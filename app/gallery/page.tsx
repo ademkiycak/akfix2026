@@ -7,7 +7,45 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 
 import GalleryList from "./components/Gallery";
 import { fetchData } from "@/lib/api";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
+import { SEO } from "@/lib/seo";
+
+
+
+
+export function generateMetadata() {
+  return {
+    title: "Gallery",
+    openGraph: {
+      title: "Gallery",
+      url: `${SEO.siteUrl}`,
+     images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: "Gallery",
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+    alternates: {
+      canonical: `/gallery`
+    }
+  }
+}
+
+
+
 
 export default async function Gallery(){
 
@@ -23,7 +61,7 @@ const data = await fetchData<[]>(BaseUrl()+`/api/data/galleries/`);
         color="192, 0, 32"
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "Gallery", href: "/gallery", active: true }
         ]}
       />

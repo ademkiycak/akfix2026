@@ -5,6 +5,7 @@ import Link from "next/link";
 import ContactInfo from "@/app/contact/components/ContactInfo";
 import { fetchData } from "@/lib/api";
 import { BaseUrl } from "@/lib/baseurl";
+import { title } from "process";
 
 
 interface FooterMenuItem{
@@ -14,11 +15,15 @@ interface FooterMenuItem{
     sub_menu:[]
 }
 
+
+
+
 export default async function Footer(){
 
     const footerMenus = await fetchData<[]>(BaseUrl()+"/api/data/menus/");
 
     return (
+
         <>
 
             <footer className="w-full h-auto my-10">
@@ -173,6 +178,7 @@ export default async function Footer(){
 
                 </div>
 
+                {/* 
                 <div>
                     <Link href={""} className="w-[190] h-[65] p-4 flex justify-center items-center relative hover:opacity-80">
                     <Image
@@ -183,6 +189,7 @@ export default async function Footer(){
                     />
                     </Link>
                 </div>
+                 */}
 
                 <div className="flex flex-wrap flex-col items-start lg:items-end mt-10 lg:mt-0 gap-7">
                     <Link href={"https://www.akkim.net"} target={"_blank"} className="w-[150] h-[36] p-4 flex justify-center items-center relative hover:opacity-80">

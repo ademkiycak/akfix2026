@@ -83,7 +83,7 @@ const ProductCategoryClient = ({data} : {data:ProductCategories[]}) => {
             <ProductMobileCategoryItem 
               key={index}
               title={item.title} 
-              url={item.url}  
+              url={`products/${item.url}`}  
               icon={BaseUrl()+item.img_url}  
               textColor={item.color} 
               bg={BaseUrl()+item.banner_img_url} 

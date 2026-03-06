@@ -6,11 +6,44 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { fetchData } from "@/lib/api";
 import VideoList from "./components/Videos";
-import { BaseUrl } from "@/lib/baseurl";
+import { BaseUrl, SiteUrl } from "@/lib/baseurl";
+import { SEO } from "@/lib/seo";
 
-export default async function Brochures(){
+
+export function generateMetadata() {
+  return {
+    title: "Videos",
+    openGraph: {
+      title: "Videos",
+      url: `${SEO.siteUrl}`,
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    twitter: {
+      title: "Videos",
+      images: [
+        {
+          url: `${SiteUrl()}/images/og.jpg`,
+          width: 1200,
+          height: 630
+        }
+      ]
+    },
+
+    alternates: {
+      canonical: `/Videos`
+    }
+  }
+}
 
 
+export default async function Videos(){
 
 const data = await fetchData<[]>(BaseUrl()+`/api/data/videos/`);
 
@@ -23,7 +56,7 @@ const data = await fetchData<[]>(BaseUrl()+`/api/data/videos/`);
         color="192, 0, 32"
         items={[
           { href: "/", icon: faHome },
-          { label: "Akfix", href: "/about" },
+          { label: "Akfix", href: "/akfix" },
           { label: "Videos", href: "/videos", active: true }
         ]}
       />

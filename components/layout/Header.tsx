@@ -14,7 +14,7 @@ export default function Header(){
           <div className="hidden lg:block w-[95%] xl:w-[85%] mx-auto space-x-4 text-right mt-3">
             <Link href={""} className="text-xs font-medium text-primaryx text-akfix-gray-light hover:text-gray-600 ">ONLINE CATALOG</Link>
             <span className="text-gray-300">|</span>
-            <Link href={""} className="text-xs font-medium text-akfix-gray-light hover:text-gray-600">NEW PRODUCTS</Link>
+            <Link href={"/new-products"} className="text-xs font-medium text-akfix-gray-light hover:text-gray-600">NEW PRODUCTS</Link>
           </div>
 
           <div className="w-[95%] xl:w-[85%] mx-auto mt-5 py-2 flex gap-5 md:gap-10 xl:gap-10 items-center justify-between">
