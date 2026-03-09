@@ -163,7 +163,7 @@ export default async function Products({ params }: { params: { list: string, det
               
               <div className="w-full h-auto bg-white p-7 text-lg leading-8 space-y-5 text-gray-600 rounded-lg">
                 <div className="block space-y-1">
-                  <h2 className="text-3xl font-extrabold text-[#0064B3]">Akfix</h2>
+                  <h2 className="text-3xl font-extrabold text-[#0064B3]">Akfix Master Of Solutions</h2>
                   <h3 className="text-2xl font-semibold text-gray-600">{productDetail[0].title}</h3>
                 </div>
 
